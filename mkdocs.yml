@@ -1,11 +1,11 @@
-site_name: Metagenomics Summer School
-site_author: Genomics Aotearoa & NeSI
+site_name: wf-human_variation_split
+site_author: Dinindu Senanayake
 site_dir: public
 site_url: "https://genomicsaotearoa.github.io/metagenomics_summer_school/"
 
 #Repository information
 
-repo_name:   GenomicsAotearoa/metagenomics_summer_school  
+repo_name:   DininduSenanayakae/wf-human-variation_split
 repo_url: https://github.com/GenomicsAotearoa/metagenomics_summer_school
 
 
