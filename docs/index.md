@@ -2,6 +2,14 @@
 
 modified version of <KBD>epi2me-labs/wf-human-variation</KBD>        (https://github.com/epi2me-labs/wf-human-variation) to make the workflow compatible with NeSI Mahuika cluster <KBD>Slurm</KDB> scheduler
 
+??? terminal "02-ont-guppy-gpu"
+    - Refer to NeSI Support documentation https://support.nesi.org.nz/hc/en-gb/articles/4546820344079-ont-guppy-gpu
+
+    <KBD>Dorado</KBD>
+
+    - Dorado is available as a module but treat as a R&D application for the moment.
+    - NeSI support documentation for Dorado https://support.nesi.org.nz/hc/en-gb/articles/6623692647951-Dorado  
+
 ??? terminal "03-ont-bam-merge.slurm"
     ```
     !#/bin/bash -e
@@ -191,4 +199,46 @@ modified version of <KBD>epi2me-labs/wf-human-variation</KBD>        (https://gi
     # per strand, so some processing will be required to 'collapse' the data to a
     # single CpG site, but this type of work is usually performed in the downstream\
     # analysis, using packages such as methylkit.
+    ```
+??? terminal "07-ont-sv-cutesv.slurm"
+    ```
+    #!/bin/bash -e
+    
+    #SBATCH --account         nesi12345
+    #SBATCH --job-name        ont-csv-cutesv
+    #SBATCH --cpus-per-task   16
+    #SBATCH --mem             128G
+    #SBATCH --time            06:00:00
+    
+    module purge
+    module load cuteSV/2.0.2-gimkl-2020a-Python-3.8.2
+    
+    # define variables
+    WKDIR='/path/to/workingdir'
+    SAMPLE='PBXP289487'
+    REFERENCE='/path/to/reference/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta'
+    OUTPUT='results'
+    
+    # move to working dir
+    cd ${WKDIR}/${SAMPLE}
+    mkdir cutesv_tmp
+    
+    # cuteSV processing
+    cuteSV -t ${SLURM_CPUS_PER_TASK} \
+      --max_cluster_bias_INS 100 \
+      --diff_ratio_merging_INS 0.3 \
+      --max_cluster_bias_DEL 100 \
+      --diff_ratio_merging_DEL 0.3 \
+      ./bam/${SAMPLE}_sorted_merged.hp.bam \
+      ${REFERENCE} \
+      ${OUTPUT}/${SAMPLE}_sv_cutesv.vcf \
+      ./cutesv_tmp
+    
+    # Notes:
+    # this step is for evaluation of another structural variant caller, cuteSV. It's 
+    # often nice to have the ability to compare results between various tools. As 
+    # SVs are important to this project this step has been included in the process.
+    # For other projects it may well be enough to stop after processing step 06.
+    # This process outputs a vcf file with the structural variation recorded per
+    # line.
     ```
