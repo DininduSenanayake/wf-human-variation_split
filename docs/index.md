@@ -12,7 +12,7 @@ modified version of <KBD>epi2me-labs/wf-human-variation</KBD>        (https://gi
 
 ??? terminal "03-ont-bam-merge.slurm"
     ```
-    !#/bin/bash -e
+    #!/bin/bash -e
 
     #SBATCH --account         nesi12345
     #SBATCH --job-name        ont-bam-merge
