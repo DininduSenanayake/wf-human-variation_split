@@ -1,4 +1,7 @@
-# <KBD>epi2me-labs/wf-human-variation</KBD> for NeSI Mahuika cluster
+<style>h2 {text-align: center;}</style>
+<h2><KBD>epi2me-labs/wf-human-variation</KBD> for NeSI Mahuika cluster</h2>
+
+* * * 
 
 modified version of <KBD>epi2me-labs/wf-human-variation</KBD>        (https://github.com/epi2me-labs/wf-human-variation) to make the workflow compatible with NeSI Mahuika cluster <KBD>Slurm</KDB> scheduler
 
