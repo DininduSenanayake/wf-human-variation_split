@@ -73,6 +73,7 @@ markdown_extensions:
   - footnotes
   - meta
   - md_in_html
+  - nl2br
   - toc:
       permalink: true
   - pymdownx.arithmatex:
@@ -82,8 +83,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_generator: !!python/name:materialx.emoji.to_svg
-      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
@@ -118,6 +119,7 @@ plugins:
       zoomable: true
   - search:
       lang: en
+  - callouts
 
 extra_css:
   - stylesheets/extra.css
