@@ -73,6 +73,7 @@ markdown_extensions:
   - footnotes
   - meta
   - md_in_html
+  - nl2br
   - toc:
       permalink: true
   - pymdownx.arithmatex:
@@ -118,6 +119,7 @@ plugins:
       zoomable: true
   - search:
       lang: en
+  - callouts
 
 extra_css:
   - stylesheets/extra.css
